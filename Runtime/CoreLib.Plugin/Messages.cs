@@ -95,6 +95,7 @@ namespace CoreLib.Plugin {
 		public static readonly Tuple<int, MessageSeverity, string> _7168 = Tuple.Create(7168, MessageSeverity.Error, "The name specified in the [BackingFieldNameAttribute] for the property {0} must be a valid JavaScript identifier.");
 		public static readonly Tuple<int, MessageSeverity, string> _7169 = Tuple.Create(7169, MessageSeverity.Error, "The event {0} cannot have a [BackingFieldNameAttribute] because it is not an automatically implemented event and thus it doesn't have a backing field.");
 		public static readonly Tuple<int, MessageSeverity, string> _7170 = Tuple.Create(7170, MessageSeverity.Error, "The name specified in the [BackingFieldNameAttribute] for the event {0} must be a valid JavaScript identifier.");
+        public static readonly Tuple<int, MessageSeverity, string> _7171 = Tuple.Create(7171, MessageSeverity.Error, "The interfaces cannot declare a [DefaultMemberReflectabilityAttribute] with Cascade set to true.");
 
 		public static readonly Tuple<int, MessageSeverity, string> _7200 = Tuple.Create(7200, MessageSeverity.Error, "This constructor for the type {0} cannot be used with reflection because it has a special implementation.");
 		public static readonly Tuple<int, MessageSeverity, string> _7201 = Tuple.Create(7201, MessageSeverity.Error, "The {1} {0} cannot be used with reflection because it has a special implementation.");

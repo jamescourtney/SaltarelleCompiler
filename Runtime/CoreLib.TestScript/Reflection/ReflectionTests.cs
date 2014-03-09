@@ -323,7 +323,7 @@ namespace CoreLib.TestScript.Reflection {
 			[Reflectable(false)] private int D5;
 		}
 
-		[DefaultMemberReflectability(MemberReflectability.All)]
+		[DefaultMemberReflectability(MemberReflectability.All, true)]
 		public class C28 {
 			public int A1;
 			[Reflectable] public int B1;
@@ -345,6 +345,13 @@ namespace CoreLib.TestScript.Reflection {
 			[Reflectable] private int B5;
 			[Reflectable(true)] private int C5;
 			[Reflectable(false)] private int D5;
+		}
+
+		public class C29 : C28 {
+			public int A6;
+			[Reflectable] public int B6;
+			[Reflectable(true)] public int C6;
+			[Reflectable(false)] public int D6;
 		}
 
 		[Test]
@@ -1547,6 +1554,7 @@ namespace CoreLib.TestScript.Reflection {
 			var c26 = typeof(C26);
 			var c27 = typeof(C27);
 			var c28 = typeof(C28);
+			var c29 = typeof(C29);
 
 			Assert.IsNull   (c25.GetField("A1"), "C25.A1");
 			Assert.IsNotNull(c25.GetField("B1"), "C25.B1");
@@ -1631,6 +1639,31 @@ namespace CoreLib.TestScript.Reflection {
 			Assert.IsNotNull(c28.GetField("B5"), "C28.B5");
 			Assert.IsNotNull(c28.GetField("C5"), "C28.C5");
 			Assert.IsNull   (c28.GetField("D5"), "C28.D5");
+
+			Assert.IsNotNull(c29.GetField("A1"), "C29.A1");
+			Assert.IsNotNull(c29.GetField("B1"), "C29.B1");
+			Assert.IsNotNull(c29.GetField("C1"), "C29.C1");
+			Assert.IsNull   (c29.GetField("D1"), "C29.D1");
+			Assert.IsNotNull(c29.GetField("A2"), "C29.A2");
+			Assert.IsNotNull(c29.GetField("B2"), "C29.B2");
+			Assert.IsNotNull(c29.GetField("C2"), "C29.C2");
+			Assert.IsNull   (c29.GetField("D2"), "C29.D2");
+			Assert.IsNotNull(c29.GetField("A3"), "C29.A3");
+			Assert.IsNotNull(c29.GetField("B3"), "C29.B3");
+			Assert.IsNotNull(c29.GetField("C3"), "C29.C3");
+			Assert.IsNull   (c29.GetField("D3"), "C29.D3");
+			Assert.IsNotNull(c29.GetField("A4"), "C29.A4");
+			Assert.IsNotNull(c29.GetField("B4"), "C29.B4");
+			Assert.IsNotNull(c29.GetField("C4"), "C29.C4");
+			Assert.IsNull   (c29.GetField("D4"), "C29.D4");
+			Assert.IsNotNull(c29.GetField("A5"), "C29.A5");
+			Assert.IsNotNull(c29.GetField("B5"), "C29.B5");
+			Assert.IsNotNull(c29.GetField("C5"), "C29.C5");
+			Assert.IsNull   (c29.GetField("D5"), "C29.D5");
+			Assert.IsNotNull(c29.GetField("A6"), "C29.A6");
+			Assert.IsNotNull(c29.GetField("B6"), "C29.B6");
+			Assert.IsNotNull(c29.GetField("C6"), "C29.C6");
+			Assert.IsNull   (c29.GetField("D6"), "C29.D6");
 		}
 	}
 }

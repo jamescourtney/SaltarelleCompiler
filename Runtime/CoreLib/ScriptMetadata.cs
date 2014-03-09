@@ -512,8 +512,11 @@ namespace System.Runtime.CompilerServices {
 	{
 		public MemberReflectability DefaultReflectability { get; private set; }
 
-		public DefaultMemberReflectabilityAttribute(MemberReflectability defaultReflectability) {
+		public bool Cascades { get; private set; }
+
+		public DefaultMemberReflectabilityAttribute(MemberReflectability defaultReflectability, bool cascades = false) {
 			DefaultReflectability = defaultReflectability;
+			Cascades = cascades;
 		}
 	}
 

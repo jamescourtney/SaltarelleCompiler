@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using ICSharpCode.NRefactory.TypeSystem;
 using Saltarelle.Compiler;
@@ -25,6 +26,27 @@ namespace System.Runtime.CompilerServices {
 				if (!attributes.HasAttribute<ReflectableAttribute>()) {
 					if (IsMemberReflectable(m)) {
 						attributes.Add(new ReflectableAttribute(true));
+					}
+				}
+			}
+
+			if (Cascades)
+			{
+				if (type.Kind == TypeKind.Interface) {
+					// Disallow interfaces as this creates ambiguity
+					errorReporter.Message(CoreLib.Plugin.Messages._7171);
+				}
+				else {
+					// Cascade this attribute to direct children only. That way, subclasses will always inherit the attribute
+					// from their most direct parent.
+					var directChildren = type.GetSubTypeDefinitions().Where(subType => subType != type && subType.DirectBaseTypes.Contains(type));
+
+					foreach (var childType in directChildren) {
+						var childAttributes = attributeStore.AttributesFor(childType);
+						if (!childAttributes.HasAttribute<DefaultMemberReflectabilityAttribute>()) {
+							childAttributes.Add(this);
+							this.ApplyTo(childType, attributeStore, errorReporter);
+						}
 					}
 				}
 			}
