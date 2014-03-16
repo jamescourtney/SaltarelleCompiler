@@ -320,8 +320,8 @@ namespace CoreLib.Plugin {
 
 			bool isMutableValueType = false;
 			if (typeDefinition.Kind == TypeKind.Struct) {
-				isMutableValueType = attributes.HasAttribute<MutableAttribute>() || attributes.HasAttribute<CompilerGeneratedAttribute>();
-				if (!isMutableValueType) {
+				isMutableValueType = attributes.HasAttribute<MutableAttribute>();
+				if (!isMutableValueType && typeDefinition.ParentAssembly.Equals(_compilation.MainAssembly)) {
 					foreach (var p in typeDefinition.Properties.Where(p => !p.IsStatic && MetadataUtils.IsAutoProperty(p) == true)) {
 						Message(Messages._7162, p.Region, typeDefinition.FullName);
 					}
